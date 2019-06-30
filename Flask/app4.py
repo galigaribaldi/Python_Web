@@ -11,9 +11,14 @@ app.secret_key = 'secreto'
 def index():
     return render_template('index.html')
 
+@app.route('/crear')
+def crear_cuenta():
+    return render_template('formulario.html')
+
 @app.route('/pelicula')
 def pelicula():
-    return render_template('catalogo.html')
+    datos = coneccion.consulta_pelicula()
+    return render_template('catalogo.html', pel = datos)
 
 @app.route('/config')
 def config():
@@ -22,32 +27,27 @@ def config():
 
 @app.route('/add', methods =['POST'])
 def add_contact():
-
     if request.method == 'POST':
-        contact_id2 = request.form['contact_id']
-        fullname2 = request.form['fullname']
-        phone2 = request.form['phone']
-        email2 = request.form['email']
-        print(contact_id2)
-        print(fullname2)
-        print(phone2)
-        print(email2)
+        usuario_id = request.form['usuario_id']
+        ap_pat = request.form['ap_pat']
+        ap_mat = request.form['ap_mat']
+        direccion = request.form['direccion']
+        email = request.form['correo']
+        print(usuario_id)
+        print(ap_pat)
+        print(ap_mat)
+        print(direccion)
+        print(email)
         try:
-            coneccion.insertcontactcs(contact_id2, fullname2, phone2, email2)
-            flash('El contacto se ha añadido correctamente')
+            coneccion.insertusers(usuario_id, ap_pat, ap_mat, direccion, email)
+            flash('Tu cuenta ha quedado Registrada, por favor inicia sesion')
             return redirect(url_for('index'))
         except sqlite3.IntegrityError:
-            flash('El contacto no se pudo guardar, ya que este ID ya no esta disponible')
+            flash('Tu cuenta no se pudo registrar, por favor intentalo de nuevo')
             return redirect(url_for('index'))
     else:
         return render_template('index.html')
-@app.route('/edit')
-def edit_contact():
-    return 'edit'
 
-@app.route('/delete')
-def delete_contact():
-    return 'delete'
 
 if __name__ == '__main__':
     app.run(debug=True)

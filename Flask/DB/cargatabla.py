@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sqlite3 ### Importamos la libreria SQLITE3
-con = sqlite3.connect('Bases.db') ##Creamos nuestra conexion a bases
+con = sqlite3.connect('baseFlask.db') ##Creamos nuestra conexion a bases
 cursor = con.cursor() 
 
 creacion = open('tablas.sql','r') ###Abrimos nuestro archivo en modo lectura
@@ -17,7 +17,7 @@ for i in l: ##Recorremos nuestra lista elemento por elemento
 		cursor.execute(cadena) ##Ejecutamos nuestra cadena 
 		cadena = "" ##Vaciamos la cadena
 		#print(cadena) ##
-		input("Cadena vacia") ##Aclaramos que la cadena esta vacia
+		#c =input("Cadena vacia") ##Aclaramos que la cadena esta vacia
 		con.commit() ##Guardamos nuestros cambios en la base
 	else: ##Si no ha encontrado los ";", entonces recorremos hasta encontrar saltos de linea
 		cadena = cadena + i ##Y solo los cambiamos por espacios en blanco
@@ -25,7 +25,7 @@ for i in l: ##Recorremos nuestra lista elemento por elemento
 		print(cadena)
 
 if len(cadena) > 1: ##Si el rango de la cadena es mayor a 1, entonces ejecutamos lo ultimo que contenga
-	input("La cadena aun contiene algo: ")
+	#input("La cadena aun contiene algo: ")
 	print(cadena)
 	cursor.execute(cadena)
 	con.commit() ##Guardamos nuestros cambios
