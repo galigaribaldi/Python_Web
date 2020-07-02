@@ -1,7 +1,19 @@
 from flask import Flask
-from flask import request, render_template
+from flask import request, render_template, url_for
 
 app = Flask(__name__)
+
+@app.route('/primer_html')
+@app.route('/primer_html/<name>')
+
+def primer_html(name="Flaskito"):
+   return '''
+<h1> hola mundo desde flask %s </h1>
+''' %name
+@app.route('/statics')
+def static_f():
+   #return "<img src='/static/img/IT.jpg'>"
+   return "<img src='"+url_for("static", filename="img/IT.jpg")+"'>"
 
 @app.route('/')
 def index():

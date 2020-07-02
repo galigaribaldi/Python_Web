@@ -1,3 +1,8 @@
+"""
+Aplicacion en Flask, pasandole valores por la URL
+Y pasando valores por default
+"""
+
 from flask import Flask
 from flask import request
 
@@ -21,6 +26,12 @@ def suma2(num1 = 0, num2 = 0):
 	num1 = request.args.get('num1', num1)
 	num2 = request.args.get('num2', num2)
 	return "{} mas {} es igual a {}".format(num1, num2, int(num1)+int(num2))
+
+###Pasar valores por default
+@app.route("/saludar")
+@app.route("/saludar/<hi>")
+def saludar(hi=" Hola"):
+    return 'Saludar ' + hi
 
 if __name__ == "__main__":
 	app.run(debug=True)
