@@ -1,0 +1,26 @@
+<h3>
+    {{ products['name'] }}</h3>
+<h3>{{ products['category'] }}</h3>
+<h3>{{ products['price'] }}</h3>
+<h3>Filtro Default: {{ products['price'] | default('Sin precio', True)}}</h3>
+{{ "
+<h1>Hola Mundo</h1>" | safe }}
+<!--Filtro Truncate-->
+{{ "Descripcion de un producto" | truncate(23) }}
+<!--count--><br> {{ "Descripcion de un producto" | count() }}
+<!--Float--><br>
+<p>Convertir a Float: {{ "70" | float }}</p>
+<!--INT-->
+<p> Convertir a entero: {{ "70.0" | int }}</p>
+<!--Contar caracteres después dle punto decimal-->
+<p> round: {{ 3.14165278323| round(3) }}</p>
+<!--Arreglos separados por coma-->
+<p> {{ ["Iphone", "Ipad"] | join(", ") }}</p>
+<!--Len-->
+<p> {{ ["Iphone", "Ipad"] | length }}</p>
+<!--Convertir objetos a json-->
+<p> {{ {'offer': False, 'price': 50.5, 'k': 45} | tojson}} </p>
+<!--Usando un filtro-->
+<p> Filtro Global para Custom: {{ "50" | mydouble }} </p>
+<!--Usando un filtro-->
+<p> Filtro Local Custom: {{ products | iva }} </p>

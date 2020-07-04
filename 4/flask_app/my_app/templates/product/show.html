@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'layout/base.html' %}
+<!---->
+{% block container%}
+<h3>{{ products['name'] }}</h3>
+<h3>{{ products['category'] }}</h3>
+<h3>{{ products['price'] }}</h3>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<!---->
+{% if products['price'] > 900 %}
+<p>Precio regular</p>
+{% else %}
+<p>Precio oferta</p>
 
-<body>
-    <h3>{{ products['name'] }}</h3>
-    <h3>{{ products['category'] }}</h3>
-</body>
-
-</html>
+{% endif %} {% endblock %}

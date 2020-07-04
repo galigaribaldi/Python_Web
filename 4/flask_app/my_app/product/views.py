@@ -17,3 +17,14 @@ def show(id):
    if not product:
       return "No existe"
    return render_template("product/show.html", products = product)
+
+@product.route('/filter/<int:id>')
+def filter(id):
+   product = PRODUCTS.get(id)
+   return render_template("product/filter.html", products = product)
+
+@product.app_template_filter('iva')
+def iva_filter(product):
+   if product['price']:
+      return product["price"] * .20 + product["price"]
+   return "Sin Precio"
