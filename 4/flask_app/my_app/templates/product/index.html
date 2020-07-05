@@ -2,9 +2,9 @@
 <!---->
 {% block container%}
 <!---->
-{% for key, product in products.items() %}
+{% for product in products %}
 <div>
-    <a href="{{ url_for('product.show', id=key) }}">{{ product['name'] }}</a> {{ loop.revindex }} {{ loop.previtem }}
+    <a href="{{ url_for('product.show', id=product['id']) }}">{{ product['name'] }}</a> {{ loop.revindex }} {{ loop.previtem }}
 </div>
 {% endfor %}
 <!---->
