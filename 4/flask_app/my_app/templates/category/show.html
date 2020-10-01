@@ -1,0 +1,14 @@
+{% extends 'layout/base.html' %}
+<!---->
+{% block container%}
+<h3>{{ products['name'] }}</h3>
+<h3>{{ products['category'] }}</h3>
+<h3>{{ products['price'] }}</h3>
+
+<!---->
+{% if products['price'] > 900 %}
+<p>Precio regular</p>
+{% else %}
+<p>Precio oferta</p>
+
+{% endif %} {% endblock %}

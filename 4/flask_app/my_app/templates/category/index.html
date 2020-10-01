@@ -4,21 +4,21 @@
 <!---->
 {% block container%}
 <br>
-<a class="btn btn-primary mt-2 mb-2" href="{{ url_for('product.create') }}"> <i class="fa fa-plus"></i>Crear</a>
+<a class="btn btn-primary mt-2 mb-2" href="{{ url_for('category.create') }}"> <i class="fa fa-plus"></i>Crear</a>
 <br>
-<div class="list-product">
+<div class="list-category">
     <!---->
-    {% for product in products.items %}
+    {% for category in categories.items %}
     <div class="jumbotron pb-2 pt-3 {{ loop.cycle('odd', 'even') }} ">
-        <h3><a href="{{ url_for('product.show', id=product['id']) }}">{{ product['name'] }}</a></h3>
+        <h3><a href="{{ url_for('category.show', id=category['id']) }}">{{ category['name'] }}</a></h3>
 
-        <a data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-success btn-sm" href="{{ url_for('product.update', id=product['id']) }}"><i class="fa fa-edit"></i></a>
+        <a data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-success btn-sm" href="{{ url_for('category.update', id=category['id']) }}"><i class="fa fa-edit"></i></a>
 
-        <button data-toggle="modal" data-target="#deleteModal" data-name="{{ product['name'] }}" data-id="{{ product['id'] }}" class="btn btn-danger btn-sm" href="{{ url_for('product.delete', id=product['id']) }}"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Eliminar Producto {{ product['name'] }}" ></i></button>
+        <button data-toggle="modal" data-target="#deleteModal" data-name="{{ category['name'] }}" data-id="{{ category['id'] }}" class="btn btn-danger btn-sm" href="{{ url_for('category.delete', id=category['id']) }}"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Eliminar Producto {{ category['name'] }}" ></i></button>
     </div>
     {% endfor %}
 </div>
-{{ m_pagination(products) }}
+{{ m_pagination(categories) }}
 <!---->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -50,7 +50,7 @@
                 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
             modal.find('.modal-title span').text(name)
-            $("#deleteProduct").attr("href", "/product-delete/" + id)
+            $("#deleteProduct").attr("href", "/category-delete/" + id)
         })
     }
 </script>

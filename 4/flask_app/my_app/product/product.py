@@ -5,6 +5,7 @@ from sqlalchemy.sql.expression import not_, or_
 from my_app import db
 from my_app.product.model.products import PRODUCTS
 from my_app.product.model.product import Product
+from my_app.product.model.category import Category
 from my_app.product.model.product import ProductForm
 
 
@@ -35,6 +36,11 @@ def delete(id):
 def update(id):
    product = Product.query.get_or_404(id)
    form = ProductForm(meta={'csrf':False})
+   
+   categories = [ (c.id, c.name) for c in Category.query.all()]
+   form.category_id.choices = categories
+   
+   print(product.category)#.first()
    if request.method == 'GET':
       form.name.data = product.name
       form.price.data = product.price
@@ -55,6 +61,9 @@ def update(id):
 @product.route('/product-create', methods = ('GET', 'POST'))
 def create():
    form = ProductForm(meta={'csrf': False})
+   categories = [ (c.id, c.name) for c in Category.query.all()]
+   print(categories)
+   form.category_id.choices = categories
    if form.validate_on_submit():
       p = Product(request.form['name'],request.form['price']) ##Crear un producto
       db.session.add(p) ## Creacion de un registro en la base
