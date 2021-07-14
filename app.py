@@ -8,6 +8,7 @@ import Controllers.modelsCreation as crear
 import Controllers.modelsOperations as operaciones
 app = Flask(__name__)
 ##Creamos nuestro primer decorador, lo que nos permite crear la ruta principal "/"
+
 @app.route("/")
 def hello():
     ##Le decimos a nuestra función que retorne "Hola mundo"
