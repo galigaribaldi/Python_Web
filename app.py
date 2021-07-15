@@ -16,7 +16,9 @@ def hello():
 @app.route("/api")
 def api():
     dicccionario = operaciones.consulta()
-    return dicccionario
+    #dic2={"API":[]}
+    #dic2["API"] =dicccionario
+    return dicccionario[1]
 
 @app.route("/api/CreacionTabla")
 def creacion():

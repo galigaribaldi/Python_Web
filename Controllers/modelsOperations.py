@@ -10,5 +10,6 @@ password = 'e7ee067d0498d23210a9f46e979961ac80a034ddd6d7038e321b581cfddc750d'
 def consulta():
     query = "SELECT * FROM pelicula;"
     datos = pd.read_sql(query, con=psycopg2.connect(host=host, database=database, user=user, password=password))
-    datos = datos.to_json()
-    return datos
+    datosJson = datos.to_json()
+    print(datosJson)
+    return datos, datosJson
